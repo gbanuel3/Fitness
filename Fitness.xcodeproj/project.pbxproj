@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,8 @@
 		2B5707EB26C2050100AB884A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B5707EA26C2050100AB884A /* Preview Assets.xcassets */; };
 		2B5707F626C2050100AB884A /* FitnessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5707F526C2050100AB884A /* FitnessTests.swift */; };
 		2B57080126C2050100AB884A /* FitnessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57080026C2050100AB884A /* FitnessUITests.swift */; };
+		2B57081126C321F700AB884A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57081026C321F700AB884A /* LoginView.swift */; };
+		2B57081326C3220800AB884A /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B57081226C3220800AB884A /* SignupView.swift */; };
 		645EEEBC90925B8A8A4695E2 /* Pods_Fitness.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71060D93EBD2A75455D5EE22 /* Pods_Fitness.framework */; };
 		FAC94740038B88DA23B49A5C /* Pods_Fitness_FitnessUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 268AF8D651363F10F941ADB0 /* Pods_Fitness_FitnessUITests.framework */; };
 		FC1004A49A4B0BFB145C6660 /* Pods_FitnessTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1727D7BF960EA8A7E8F2980E /* Pods_FitnessTests.framework */; };
@@ -50,6 +52,8 @@
 		2B5707FC26C2050100AB884A /* FitnessUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitnessUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B57080026C2050100AB884A /* FitnessUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitnessUITests.swift; sourceTree = "<group>"; };
 		2B57080226C2050100AB884A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B57081026C321F700AB884A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		2B57081226C3220800AB884A /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		46DCEF62ED5C81A5A45BD841 /* Pods-Fitness.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fitness.debug.xcconfig"; path = "Target Support Files/Pods-Fitness/Pods-Fitness.debug.xcconfig"; sourceTree = "<group>"; };
 		71060D93EBD2A75455D5EE22 /* Pods_Fitness.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fitness.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF3E629D3826732D931E3D96 /* Pods-FitnessTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitnessTests.release.xcconfig"; path = "Target Support Files/Pods-FitnessTests/Pods-FitnessTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 			isa = PBXGroup;
 			children = (
 				2B5707E326C2050000AB884A /* FitnessApp.swift */,
+				2B57081026C321F700AB884A /* LoginView.swift */,
+				2B57081226C3220800AB884A /* SignupView.swift */,
 				2B5707E526C2050000AB884A /* ContentView.swift */,
 				2B5707E726C2050100AB884A /* Assets.xcassets */,
 				2B5707EC26C2050100AB884A /* Info.plist */,
@@ -167,7 +173,6 @@
 				D59F52FFEE841ACF80511558 /* Pods-FitnessTests.debug.xcconfig */,
 				AF3E629D3826732D931E3D96 /* Pods-FitnessTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -408,6 +413,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B57081326C3220800AB884A /* SignupView.swift in Sources */,
+				2B57081126C321F700AB884A /* LoginView.swift in Sources */,
 				2B5707E626C2050000AB884A /* ContentView.swift in Sources */,
 				2B5707E426C2050000AB884A /* FitnessApp.swift in Sources */,
 			);
