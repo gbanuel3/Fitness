@@ -12,9 +12,11 @@ import SwiftUI
 struct FitnessApp: App {
     var body: some Scene {
         WindowGroup {
-//            ContentView()
-            
-            LoginView()
+            if app.currentUser == nil {
+                LoginView()
+            }else {
+                ContentView()
+            }
         }
     }
 }

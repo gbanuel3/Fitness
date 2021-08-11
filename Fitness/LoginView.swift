@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import RealmSwift
 
 class LoginInformation: ObservableObject {
     @Published var username:String = ""
@@ -127,6 +128,24 @@ func onPressLogin(loginInfo: LoginInformation){
     print("Button Pressed!")
     print(loginInfo.username)
     print(loginInfo.password)
+    
+    let app = App(id: "application-0-ogjxf")
+
+    // Log in anonymously.
+    
+    app.login(credentials: Credentials.anonymous) { result in
+        // Remember to dispatch back to the main thread in completion handlers
+        // if you want to do anything on the UI.
+        DispatchQueue.main.async {
+            switch result {
+            case .failure(let error):
+                print("Login failed: \(error)")
+            case .success(let user):
+                print("Login as \(user) succeeded!")
+            }
+        }
+    }
+    
 }
 
 struct signupButtonStyle: View {
