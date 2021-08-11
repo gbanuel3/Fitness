@@ -8,7 +8,7 @@
 import SwiftUI
 import RealmSwift
 import Combine
-
+ 
 let app = App(id: "application-0-ogjxf")
 // QsTask is the Task model for this QuickStart
 class QsTask: Object {
@@ -28,8 +28,8 @@ func runExample() {
     let app = App(id: "application-0-ogjxf")
 
     // Log in anonymously.
- 
-    app.login(credentials: Credentials.anonymous) { (result) in
+    
+    app.login(credentials: Credentials.anonymous) { result in
         // Remember to dispatch back to the main thread in completion handlers
         // if you want to do anything on the UI.
         DispatchQueue.main.async {
