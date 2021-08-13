@@ -10,7 +10,7 @@ import Combine
 import RealmSwift
 
 class LoginInformation: ObservableObject {
-    @Published var username:String = ""
+    @Published var email:String = ""
     @Published var password:String = ""
     @Published var authenticationDidFail:Bool = false
     @Published var authenticationDidSucceed:Bool = true
@@ -51,8 +51,7 @@ struct LoginView: View {
             .padding()
             
             if loginInfo.authenticationDidSucceed {
-                let capitalizedName = loginInfo.username.prefix(1).capitalized + loginInfo.username.dropFirst()
-                Text("Welcome Back, \(capitalizedName)!")
+                Text("Welcome Back!")
                     .font(.headline)
                     .frame(width: 250, height: 100)
                     .background(Color.green)
@@ -89,7 +88,7 @@ struct ImageView: View {
 struct FieldsView: View {
     @ObservedObject var loginInfo: LoginInformation
     var body: some View {
-        TextField("Username", text: $loginInfo.username)
+        TextField("Email", text: $loginInfo.email)
             .padding()
             .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color(hue: 1.0, saturation: 0.002, brightness: 0.955)/*@END_MENU_TOKEN@*/)
             .cornerRadius(5)
@@ -126,23 +125,18 @@ struct loginButtonStyle: View {
 
 func onPressLogin(loginInfo: LoginInformation){
     print("Button Pressed!")
-    print(loginInfo.username)
+    print(loginInfo.email)
     print(loginInfo.password)
     
     let app = App(id: "application-0-ogjxf")
-
-    // Log in anonymously.
     
-    app.login(credentials: Credentials.anonymous) { result in
-        // Remember to dispatch back to the main thread in completion handlers
-        // if you want to do anything on the UI.
-        DispatchQueue.main.async {
-            switch result {
-            case .failure(let error):
-                print("Login failed: \(error)")
-            case .success(let user):
-                print("Login as \(user) succeeded!")
-            }
+    app.login(credentials: Credentials.emailPassword(email: loginInfo.email, password: loginInfo.password)) { (result) in
+        switch result {
+        case .failure(let error):
+            print("Login failed: \(error.localizedDescription)")
+        case .success(let user):
+            print("Successfully logged in as user \(user)")
+
         }
     }
     
