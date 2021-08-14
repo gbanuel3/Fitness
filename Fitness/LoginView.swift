@@ -16,50 +16,74 @@ class LoginInformation: ObservableObject {
     @Published var authenticationDidSucceed:Bool = true
 }
 
+struct Background<Content: View>: View {
+    private var content: Content
+
+    init(@ViewBuilder content: @escaping () -> Content) {
+        self.content = content()
+    }
+
+    var body: some View {
+        Color.white
+        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        .overlay(content)
+    }
+}
+
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+
 struct LoginView: View {
     @ObservedObject var loginInfo: LoginInformation = LoginInformation()
     @State var showSignupView:Bool = false
     var body: some View {
-        ZStack{
-            VStack{
-                Group{
-                    Spacer()
-                    TitleView()
-                    Spacer()
-                    ImageView()
-                    Spacer()
-                    FieldsView(loginInfo: loginInfo)
-                    Spacer()
-                    if loginInfo.authenticationDidFail {
-                        Text("Incorrect Login Information")
-                            .offset(y:-10)
-                            .foregroundColor(.red)
+        Background {
+            ZStack{
+                VStack{
+                    Group{
+                        Spacer()
+                        TitleView()
+                        Spacer()
+                        ImageView()
+                        Spacer()
+                        FieldsView(loginInfo: loginInfo)
+                        Spacer()
+                        if loginInfo.authenticationDidFail {
+                            Text("Incorrect Login Information")
+                                .offset(y:-10)
+                                .foregroundColor(.red)
+                        }
+                        
+                        loginButton(loginInfo: loginInfo)
                     }
-                    
-                    loginButton(loginInfo: loginInfo)
+                    HStack{
+                        Text("Don't have an account?")
+                        Button(action: {showSignupView = true}){
+                            signupButtonStyle()
+                        }
+                        .fullScreenCover(isPresented: $showSignupView){
+                            SignupView()
+                        }
+                    }
                 }
-                HStack{
-                    Text("Don't have an account?")
-                    Button(action: {showSignupView = true}){
-                        signupButtonStyle()
-                    }
-                    .fullScreenCover(isPresented: $showSignupView){
-                        SignupView()
-                    }
+                .padding()
+                
+                if loginInfo.authenticationDidSucceed {
+                    Text("Welcome Back!")
+                        .font(.headline)
+                        .frame(width: 250, height: 100)
+                        .background(Color.green)
+                        .cornerRadius(20)
+                        .foregroundColor(.white)
+                        .animation(.easeIn(duration: 0.5))
+                        .offset(y:-15)
                 }
             }
-            .padding()
-            
-            if loginInfo.authenticationDidSucceed {
-                Text("Welcome Back!")
-                    .font(.headline)
-                    .frame(width: 250, height: 100)
-                    .background(Color.green)
-                    .cornerRadius(20)
-                    .foregroundColor(.white)
-                    .animation(.easeIn(duration: 0.5))
-                    .offset(y:-15)
-            }
+        }.onTapGesture {
+            UIApplication.shared.endEditing()
         }
     }
 }
