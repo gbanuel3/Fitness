@@ -14,6 +14,7 @@ class signupInformation: ObservableObject {
     @Published var lastName:String = ""
     @Published var email:String = ""
     @Published var password:String = ""
+    @Published var phoneNumber: String = ""
     @Published var authenticationDidFail:Bool = false
     @Published var authenticationDidSucceed:Bool = true
 }
@@ -23,31 +24,49 @@ struct SignupView: View {
     var body: some View {
         VStack {
             Spacer()
+            Text("Create Account")
+                .font(.system(size: 40))
+                .fontWeight(.semibold)
+                .multilineTextAlignment(.leading)
+                .lineLimit(1)
+            
             HStack {
                 TextField("First Name", text: $signupInfo.firstName)
-                .padding()
-                .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color(hue: 1.0, saturation: 0.002, brightness: 0.955)/*@END_MENU_TOKEN@*/)
-                .cornerRadius(5)
-                .padding(.bottom, 10.0)
+                    .padding()
+                    .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color(hue: 1.0, saturation: 0.002, brightness: 0.955)/*@END_MENU_TOKEN@*/)
+                    .cornerRadius(5)
+                    .padding(.bottom, 10.0)
+                    .disableAutocorrection(true)
                 TextField("Last Name", text: $signupInfo.lastName)
-                .padding()
-                .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color(hue: 1.0, saturation: 0.002, brightness: 0.955)/*@END_MENU_TOKEN@*/)
-                .cornerRadius(5)
-                .padding(.bottom, 10.0)
+                    .padding()
+                    .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color(hue: 1.0, saturation: 0.002, brightness: 0.955)/*@END_MENU_TOKEN@*/)
+                    .cornerRadius(5)
+                    .padding(.bottom, 10.0)
+                    .disableAutocorrection(true)
+                
             }
             TextField("Email", text: $signupInfo.email)
-            .padding()
-            .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color(hue: 1.0, saturation: 0.002, brightness: 0.955)/*@END_MENU_TOKEN@*/)
-            .cornerRadius(5)
-            .padding(.bottom, 10.0)
-            .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
-            SecureInputView("Password", text: $signupInfo.password)
-            .padding()
-            .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color(hue: 1.0, saturation: 0.002, brightness: 0.955)/*@END_MENU_TOKEN@*/)
-            .cornerRadius(5)
-            .padding(.bottom, 10.0)
-            .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
+                .padding()
+                .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color(hue: 1.0, saturation: 0.002, brightness: 0.955)/*@END_MENU_TOKEN@*/)
+                .cornerRadius(5)
+                .padding(.bottom, 10.0)
+                .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
+                .disableAutocorrection(true)
             
+            SecureInputView("Password", text: $signupInfo.password)
+                .padding()
+                .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color(hue: 1.0, saturation: 0.002, brightness: 0.955)/*@END_MENU_TOKEN@*/)
+                .cornerRadius(5)
+                .padding(.bottom, 10.0)
+                .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
+                .disableAutocorrection(true)
+            TextField("Phone Number", text: $signupInfo.phoneNumber)
+                .padding()
+                .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color(hue: 1.0, saturation: 0.002, brightness: 0.955)/*@END_MENU_TOKEN@*/)
+                .cornerRadius(5)
+                .padding(.bottom, 10.0)
+                .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
+                .disableAutocorrection(true)
             signupButton(signupInfo: signupInfo)
             Spacer()
         }
@@ -57,11 +76,10 @@ struct SignupView: View {
 }
 
 struct SecureInputView: View {
-    
     @Binding private var text: String
     @State private var isSecured: Bool = true
     private var title: String
-    
+
     init(_ title: String, text: Binding<String>) {
         self.title = title
         self._text = text
@@ -74,9 +92,7 @@ struct SecureInputView: View {
             } else {
                 TextField(title, text: $text)
             }
-            Button(action: {
-                isSecured.toggle()
-            }) {
+            Button(action: {isSecured.toggle()}) {
                 Image(systemName: self.isSecured ? "eye.slash" : "eye")
                     .accentColor(.gray)
             }
@@ -92,6 +108,7 @@ struct signupButton: View {
         }
     }
 }
+
 struct signupButtonStyling: View {
     var body: some View {
         Text("Sign Up")
@@ -110,7 +127,6 @@ func onPressSignUp(signupInfo:signupInformation) {
     
     app.emailPasswordAuth.registerUser(email: "gbanuel3@gmail.com", password: "Body!Date!73") { Error in
         print(Error)
-        
     }
 }
 

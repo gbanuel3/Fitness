@@ -118,11 +118,13 @@ struct FieldsView: View {
             .cornerRadius(5)
             .padding(.bottom, 10.0)
             .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)
-        SecureField("Password", text: $loginInfo.password)
+            .disableAutocorrection(true)
+        SecureInputView("Password", text: $loginInfo.password)
             .padding()
             .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color(hue: 1.0, saturation: 0.0, brightness: 0.953)/*@END_MENU_TOKEN@*/)
             .cornerRadius(5)
             .padding(.bottom, 20.0)
+            .disableAutocorrection(true)
     }
 }
 
